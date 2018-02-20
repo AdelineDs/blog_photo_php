@@ -15,7 +15,7 @@ class ControleurPortfolio{
   public function portfolio() {
     session_start();
     $photos = $this->portfolio->getPortfolio();
-    $vue = new Vue("APropos");
+    $vue = new Vue("Portfolio");
     $vue->generer(array('photos' => $photos));
   } 
   

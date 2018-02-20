@@ -53,7 +53,7 @@ class Routeur {
           elseif ($_GET['action'] == 'blog') {
               $this->ctrlBillet->blog();
            }
-           elseif ($_GET['action'] == 'APropos') {
+           elseif ($_GET['action'] == 'Portfolio') {
                $this->ctrlPortfolio->portfolio();
           }
            elseif ($_GET['action'] == 'Contact') {

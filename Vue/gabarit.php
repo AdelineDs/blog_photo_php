@@ -19,7 +19,7 @@
     </head>
                 <?php
             if (isset($_GET['action'])) {
-                    if ($_GET['action'] == 'APropos')
+                    if ($_GET['action'] == 'Portfolio')
                     {?>
     <body class="bodyPortfolio">
                 <?php
@@ -42,7 +42,7 @@
                     <div class="col-xs-12 menu">
                         <ul>
                             <li><a href="index.php">Accueil</a></li>
-                            <li><a href="index.php?action=APropos">Portfolio</a></li>
+                            <li><a href="index.php?action=Portfolio">Portfolio</a></li>
                             <li><a href="index.php?action=blog">Blog</a></li>
                             <li><a href="index.php?action=Contact">Contact</a></li>
                         </ul>
