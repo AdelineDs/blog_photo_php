@@ -13,7 +13,7 @@ class Routeur {
   private $ctrlAccueil;
   private $ctrlBillet;
   private $ctrlCommentaire;
-  private $ctrlAPropos;
+  private $ctrlPortfolio;
   private $ctrlContact;
   private $ctrlAdmin;
 
@@ -21,7 +21,7 @@ class Routeur {
     $this->ctrlAccueil = new ControleurAccueil();
     $this->ctrlBillet = new ControleurBillet();
     $this->ctrlCommentaire = new ControleurCommentaire;
-    $this->ctrlAPropos = new ControleurAPropos();
+    $this->ctrlPortfolio = new ControleurPortfolio();
     $this->ctrlContact= new ControleurContact();
     $this->ctrlAdmin= new ControleurAdmin();
   }
@@ -54,7 +54,7 @@ class Routeur {
               $this->ctrlBillet->blog();
            }
            elseif ($_GET['action'] == 'APropos') {
-              $this->ctrlAPropos->vue();
+               $this->ctrlPortfolio->portfolio();
           }
            elseif ($_GET['action'] == 'Contact') {
                $this->ctrlContact->vue();
@@ -83,12 +83,13 @@ class Routeur {
               }
               
           elseif ($_GET['action'] == 'ecrireBillet') {
-              if(!empty($_POST['titre']) && !empty($_POST['contenu']) && !empty($_POST['auteur'])){
+              if(!empty($_POST['titre']) && !empty($_POST['resume']) && !empty($_POST['contenu']) && !empty($_POST['auteur'])){
                   $titre = $this->getParametre($_POST, 'titre');
+                  $resume = $this->getParametre($_POST, 'resume');
                   $contenu = $this->getParametre($_POST, 'contenu');
                   $auteur = $this->getParametre($_POST, 'auteur');
                   $statut = $this->getParametre($_POST, 'statut');
-                  $this->ctrlBillet->ecrireBillet($titre, $contenu, $auteur, $statut);                
+                  $this->ctrlBillet->ecrireBillet($titre, $resume, $contenu, $auteur, $statut);                
               }
               else{
                   throw new Exception("Tous les champs ne sont pas remplis !");
@@ -109,12 +110,13 @@ class Routeur {
           elseif ($_GET['action'] == 'enregistrerModif') {
               $idBillet = intval($this->getParametre($_GET, 'id'));
               if ($idBillet != 0) {
-                  if(!empty($_POST['titre']) && !empty($_POST['contenu']) && !empty($_POST['auteur'])){
+                  if(!empty($_POST['titre']) && !empty($_POST['contenu']) && !empty($_POST['contenu']) && !empty($_POST['auteur'])){
                       $titre = $this->getParametre($_POST, 'titre');
+                      $resume = $this->getParametre($_POST, 'resume');
                       $contenu = $this->getParametre($_POST, 'contenu');
                       $auteur = $this->getParametre($_POST, 'auteur');
                       $statut = $this->getParametre($_POST, 'statut');
-                      $this->ctrlBillet->modifierBillet($idBillet, $titre, $contenu, $auteur, $statut);                
+                      $this->ctrlBillet->modifierBillet($idBillet, $titre, $resume, $contenu, $auteur, $statut);                
                       
                   }
                   else{

@@ -55,16 +55,16 @@ class ControleurBillet {
   }
   
   //ajoute un billet
-  public function ecrireBillet($titre, $contenu, $auteur, $statut) {
+  public function ecrireBillet($titre, $resume, $contenu, $auteur, $statut) {
   
-     $this->billet->insertBillet($titre, $contenu, $auteur, $statut); 
+     $this->billet->insertBillet($titre,$resume, $contenu, $auteur, $statut); 
      $this->blog();
 }
 
 //modifie un billet
-  public function modifierBillet($idBillet, $titre, $contenu, $auteur, $statut) {
+  public function modifierBillet($idBillet, $titre, $resume, $contenu, $auteur, $statut) {
      session_start();
-     $this->billet->modifBillet($idBillet, $titre, $contenu, $auteur, $statut);
+     $this->billet->modifBillet($idBillet, $titre, $resume, $contenu, $auteur, $statut);
      $this->billet($idBillet);
   
 }

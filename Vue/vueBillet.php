@@ -1,23 +1,16 @@
-<?php $this->titre = "SimpleBlog - " . strip_tags($billet['titre']); ?>
-<div id="content">
-                    <div id="box1">
-                        <div class="blogpost primary_wide2">
-                            <h2 style="color: purple; text-align: center"><?= strip_tags($billet['titre']); ?></h2>
-                        </div>
-                    </div>
-                </div>
-
-    <div id="content">
-        <div id="box1">
-            <div class="blogpost primary_wide2">
-                <h3> Le <em><?= $billet['date_publication_fr']; ?></em>  Par <em><?= strip_tags($billet['auteur']); ?></em></h3>
-                <p>
-                    <?= nl2br(strip_tags($billet['contenu'])); ?>
+<?php $this->titre = "Mon blog photo - " . strip_tags($billet['titre']); ?>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 articleBlog">
+            <div>
+                <h2><?= strip_tags($billet['titre']); ?></h2>
+                <p class="contenuArticle">
+                    <?= nl2br($billet['contenu']); ?>
                 </p>
+                <h5> Le <em><?= $billet['date_publication_fr']; ?></em>  Par <strong><?= strip_tags($billet['auteur']); ?></strong></h5>
             </div>
         </div>
-        <div id="box1">
-            <div class="blogpost primary_wide2">
+        <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 newCom">
+            <div>
                 <h1>Ecrire un commentaire</h1>
                     <?php
                     if(isset($insert_erreur) AND $insert_erreur) :
@@ -32,22 +25,22 @@
                 </form>
             </div>
         </div>
-        <div id="box1">
+        <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10  listeCom">
             <?php
             foreach($commentaires as $com): ?>
-            <div id="box1">
-                <div class="blogpost primary_wide2">
-                    <h2><?= strip_tags($com['auteur']); ?></h2>
-                    <h3> Le <em><?= $com['date_commentaire_fr']; ?></em></h3>
+            <div class="commentaire">
+                <div>
+                    <h3><?= strip_tags($com['auteur']); ?></h3>
+                    <h5> Le <em><?= $com['date_commentaire_fr']; ?></em></h5>
                     <p>
                         <?= nl2br(strip_tags($com['commentaire'])); ?>
                     </p>
                     <?php
                     if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
                     {?>
-                    <p class="meta">
-                        <span class="comments"><a href="<?= "index.php?action=modererCom&id=" . $com['id'] ?>">Modérer le commentaire</a></span>
-                        <span class="comments"><a href="<?= "index.php?action=supprimerCom&id=" . $com['id'] ?>">Supprimer le commentaire</a></span>
+                    <p>
+                        <span><a href="<?= "index.php?action=modererCom&id=" . $com['id'] ?>">Modérer le commentaire</a></span>
+                        <span><a href="<?= "index.php?action=supprimerCom&id=" . $com['id'] ?>">Supprimer le commentaire</a></span>
                     </p> 
                     <?php
                            }

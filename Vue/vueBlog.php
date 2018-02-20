@@ -1,56 +1,39 @@
-<?php
-$this->titre = 'Simple Blog'; 
-?> <!-- définition de l'élément spécifique $titre -->
-<div id="content">
-    <div id="box1">
-        <div class="blogpost primary_wide2">
-            <h2 style="color: purple">Mes articles !!</h2>
-        </div>
-    </div>
-</div>
+<?php $this->titre = 'Mon blog photo'; ?> <!-- définition de l'élément spécifique $titre -->
 <?php
 if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
   {
 ?>
-<div id="content">
-    <div id="box1">
-        <div class="blogpost primary_wide2">
-            <h2 style="color: red">Bonjour <?=  $_SESSION['pseudo'] ?> !</h2><br/>
-            <h3 style="color: purple"> Vous pouvez gérer le billet de votre choix ! </h3>
-        </div>
-    </div>
+<div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8">
+    <h2 style="color: red">Bonjour <?=  $_SESSION['pseudo'] ?> !</h2><br/>
+    <h3 style="color: purple"> Vous pouvez gérer le billet de votre choix ! </h3>
 </div>
 <?php
   }
 foreach ($blog as $billet): ?> 
-    <div id="content">
-        <div id="box1">
-            <div class="blogpost primary_wide2">
-                <h2><?= strip_tags($billet['titre']); ?></h2>
-                <h3>Le <em><?= $billet['date_publication_fr']; ?> </em>  Par <em><?= strip_tags($billet['auteur']); ?></em></h3>
-                <p>
-                    <?= nl2br(strip_tags($billet['contenu'])); ?>
-                </p>
-                <p class="meta">
-                    <span class="comments"><a href="<?= "index.php?action=billet&id=" . $billet['id'] ?>">Ecrire un commentaire</a></span>
-                </p>
-                                            <?php
-                            if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
-                            {?>
-                             <p class="meta">
-                                 <strong>Gestion du billet :</strong>
-                                 <span class="comments"><a href="<?= "index.php?action=modifierBillet&id=" . $billet['id'] ?>">Modifier</a></span>
-                                 <span class="comments"><a href="<?= "index.php?action=supprimerBillet&id=" . $billet['id'] ?>">Supprimer</a></span>
-                            </p> 
-                            <p class="meta">
-                                <strong>Gestion des commentaires :</strong>
-                                <span class="comments"><a href="<?= "index.php?action=gererCom&id=" . $billet['id'] ?>">Gestion des commentaires</a></span>
-                            </p> 
-                            <?php
-                             }
-                            ?>
-            </div>
+        <div class="col-lg-offset-3 col-lg-6 col-xs-offset-1 col-xs-10 article">
+            <h2><?= strip_tags($billet['titre']); ?></h2>
+<!--            <h6><strong><?= strip_tags($billet['auteur']); ?> </strong>Le <em><?= $billet['date_publication_fr']; ?> </em></h6>-->
+            <p class="resume">
+                <?= nl2br($billet['resume']); ?>
+            </p>
+            <p class="suite">
+                <span><a href="<?= "index.php?action=billet&id=" . $billet['id'] ?>">Lire L'article</a></span>
+            </p>
+            <?php
+            if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
+            {?>
+             <p>
+                 <strong>Gestion du billet :</strong>
+                 <span><a href="<?= "index.php?action=modifierBillet&id=" . $billet['id'] ?>">Modifier</a></span>
+                 <span><a href="<?= "index.php?action=supprimerBillet&id=" . $billet['id'] ?>">Supprimer</a></span>
+            </p> 
+            <p>
+                <strong>Gestion des commentaires :</strong>
+                <span><a href="<?= "index.php?action=gererCom&id=" . $billet['id'] ?>">Gestion des commentaires</a></span>
+            </p> 
+            <?php
+             }
+            ?>
         </div>
-    </div>
 <?php endforeach; ?>
 

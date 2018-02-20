@@ -1,11 +1,9 @@
 <?php $this->titre = 'Simple Blog'; ?> 
-<div id="main">
-    <div id="content">
-        <div id="box1">
+<div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8">
             <?php
             if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
             { ?>
-            <div class="blogpost primary_wide2"> 
+            <div> 
                 <h1>Bonjour <?=  $_SESSION['pseudo'] ?> ! Que voulez vous faire ?</h1>         
                 <br/>
                 <a href="index.php?action=formulaireBillet">Ecrire un nouveau billet</a>
@@ -23,7 +21,7 @@
              else {
              ?>
             
-            <div class="blogpost primary_wide2">
+            <div>
                 <h1>Administration</h1>
                     <?php
                     if(isset($insert_erreur) AND $insert_erreur) :
@@ -40,8 +38,4 @@
             <?php 
              }
              ?>
-        </div>
-        <br class="clear" />
-    </div>
-    <br class="clear" />
 </div>
